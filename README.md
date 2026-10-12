@@ -1,58 +1,221 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi manajemen inventaris berbasis web yang dibangun dengan **Laravel 13** dan **SQLite**. Sistem ini dirancang untuk mengelola produk, kategori, supplier, serta pergerakan stok (barang masuk & keluar) dengan dukungan manajemen pengguna berbasis peran (Role-Based Access Control).
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Dashboard** — Ringkasan statistik: total produk, nilai inventaris, stok rendah, total transaksi masuk/keluar
+- **Manajemen Produk** — CRUD produk dengan SKU, harga, stok, dan ambang batas stok minimum
+- **Manajemen Kategori** — Kategorisasi produk
+- **Manajemen Supplier** — Data supplier lengkap dengan relasi many-to-many ke produk
+- **Transaksi Stok** — Pencatatan barang masuk (IN) dan keluar (OUT) beserta riwayat mutasi
+- **Laporan Inventaris** — Laporan stok secara keseluruhan
+- **Manajemen Pengguna** — CRUD user dengan role Admin & Staff (khusus Admin)
+- **Autentikasi** — Login/logout dengan middleware role guard
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Layer       | Teknologi                    |
+|-------------|------------------------------|
+| Backend     | Laravel 13 (PHP ^8.3)        |
+| Database    | SQLite (default) / MySQL     |
+| Frontend    | Blade Templates + Vite       |
+| Auth        | Laravel Session Auth         |
+| Dev Tools   | Laravel Pint, Pail, Tinker   |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🗂️ Struktur Database
 
-## Agentic Development
+```
+users
+  ├── id, name, email, password, role (admin|staff)
+  └── user_profiles (avatar, phone, etc.)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+categories
+  └── id, name, description
 
-```bash
-composer require laravel/boost --dev
+suppliers
+  └── id, name, contact_person, phone, email, address
 
-php artisan boost:install
+products
+  ├── id, sku, name, price, stock, minimum_stock
+  └── category_id → categories
+
+product_suppliers (pivot many-to-many)
+  ├── product_id → products
+  ├── supplier_id → suppliers
+  └── supplier_price
+
+stock_movements
+  ├── id, type (IN|OUT), quantity, notes
+  ├── product_id → products
+  └── user_id → users
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🔐 Role & Akses
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Fitur                          | Staff | Admin |
+|-------------------------------|:-----:|:-----:|
+| Lihat Dashboard                |  ✅   |  ✅   |
+| Lihat Produk & Supplier        |  ✅   |  ✅   |
+| Input Transaksi (IN/OUT)       |  ✅   |  ✅   |
+| Lihat Laporan Inventaris       |  ✅   |  ✅   |
+| CRUD Produk                    |  ❌   |  ✅   |
+| CRUD Kategori                  |  ❌   |  ✅   |
+| CRUD Supplier                  |  ❌   |  ✅   |
+| Manajemen User                 |  ❌   |  ✅   |
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ⚙️ Persyaratan Sistem
 
-## Security Vulnerabilities
+- PHP >= 8.3
+- Composer >= 2.x
+- Node.js >= 18.x & npm
+- SQLite (sudah terintegrasi, tidak perlu instalasi terpisah)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🚀 Cara Instalasi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/<username>/iventory-laravel.git
+cd iventory-laravel
+```
+
+### 2. Setup Otomatis (Recommended)
+
+```bash
+composer run setup
+```
+
+Script ini secara otomatis akan:
+- Install dependensi PHP & Node.js
+- Menyalin `.env.example` ke `.env`
+- Generate application key
+- Menjalankan migrasi database
+- Build asset frontend (Vite)
+
+### 3. Setup Manual (Alternatif)
+
+```bash
+# Install dependensi
+composer install
+npm install
+
+# Konfigurasi environment
+cp .env.example .env
+php artisan key:generate
+
+# Jalankan migrasi & seeder
+php artisan migrate --seed
+
+# Build frontend assets
+npm run build
+```
+
+---
+
+## ▶️ Menjalankan Aplikasi
+
+```bash
+composer run dev
+# atau
+php artisan serve
+```
+
+Akses aplikasi di: **http://localhost:8000**
+
+---
+
+## 🌱 Default Seeder
+
+Setelah menjalankan `php artisan migrate --seed`, akun berikut tersedia:
+
+| Role  | Email               | Password    |
+|-------|---------------------|-------------|
+| Admin | admin@example.com   | password    |
+| Staff | staff@example.com   | password    |
+
+> ⚠️ Ubah password default setelah login pertama kali di lingkungan produksi.
+
+---
+
+## 📁 Struktur Direktori Penting
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── AuthController.php
+│   │   ├── DashboardController.php
+│   │   ├── ProductController.php
+│   │   ├── CategoryController.php
+│   │   ├── SupplierController.php
+│   │   ├── TransactionController.php
+│   │   ├── ReportController.php
+│   │   └── UserController.php
+│   └── Middleware/
+├── Models/
+│   ├── User.php
+│   ├── Product.php
+│   ├── Category.php
+│   ├── Supplier.php
+│   ├── StockMovement.php
+│   └── UserProfile.php
+database/
+├── migrations/
+└── seeders/
+resources/
+├── views/       # Blade templates
+├── css/
+└── js/
+routes/
+└── web.php
+```
+
+---
+
+## 🧪 Menjalankan Test
+
+```bash
+composer run test
+# atau
+php artisan test
+```
+
+---
+
+## 🔧 Konfigurasi Database (MySQL)
+
+Secara default aplikasi menggunakan **SQLite**. Untuk beralih ke MySQL, ubah konfigurasi berikut di file `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=inventory_db
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+Kemudian jalankan ulang migrasi:
+
+```bash
+php artisan migrate --seed
+```
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
