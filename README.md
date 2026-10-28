@@ -220,41 +220,40 @@ php artisan migrate --seed
 
 ### 1. Dokumentasi CRUD dan Blade View
 
-![Screenshot 1](./Pictures/Screenshot 2026-10-13 012339.png)
+![Screenshot 1](./Pictures/Screenshot%202026-10-13%20012339.png)
 
-![Screenshot 2](./Pictures/Screenshot 2026-10-13 012430.png)
+![Screenshot 2](./Pictures/Screenshot%202026-10-13%20012430.png)
 
-![Screenshot 3](./Pictures/Screenshot 2026-10-13 012603.png)
+![Screenshot 3](./Pictures/Screenshot%202026-10-13%20012603.png)
 
-![Screenshot 4](./Pictures/Screenshot 2026-10-13 012653.png)
+![Screenshot 4](./Pictures/Screenshot%202026-10-13%20012653.png)
 
-![Screenshot 5](./Pictures/Screenshot 2026-10-13 012716.png)
+![Screenshot 5](./Pictures/Screenshot%202026-10-13%20012716.png)
 
-![Screenshot 6](./Pictures/Screenshot 2026-10-13 012746.png)
+![Screenshot 6](./Pictures/Screenshot%202026-10-13%20012746.png)
 
-![Screenshot 7](./Pictures/Screenshot 2026-10-13 012815.png)
+![Screenshot 7](./Pictures/Screenshot%202026-10-13%20012815.png)
 
-![Screenshot 8](./Pictures/Screenshot 2026-10-13 012837.png)
+![Screenshot 8](./Pictures/Screenshot%202026-10-13%20012837.png)
 
-![Screenshot 9](./Pictures/Screenshot 2026-10-13 012857.png)
+![Screenshot 9](./Pictures/Screenshot%202026-10-13%20012857.png)
 
-![Screenshot 10](./Pictures/Screenshot 2026-10-13 012929.png)
+![Screenshot 10](./Pictures/Screenshot%202026-10-13%20012929.png)
 
 ---
 
 ### 2. Dokumentasi Routes
 
-![Route 1](./Pictures/Screenshot 2026-10-13 005048.png)
+![Route 1](./Pictures/Screenshot%202026-10-13%20005048.png)
 
-![Route 2](./Pictures/Screenshot 2026-10-13 005121.png)
+![Route 2](./Pictures/Screenshot%202026-10-13%20005121.png)
 
-![Route 3](./Pictures/Screenshot 2026-10-13 005316.png)
+![Route 3](./Pictures/Screenshot%202026-10-13%20005316.png)
 
-![Route 4](./Pictures/Screenshot 2026-10-13 005339.png)
+![Route 4](./Pictures/Screenshot%202026-10-13%20005339.png)
 
-![Route 5](./Pictures/Screenshot 2026-10-13 015648.png)
+![Route 5](./Pictures/Screenshot%202026-10-13%20015648.png)
 
 ## 📄 Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
-
